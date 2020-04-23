@@ -1,5 +1,7 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
 versions:
+  - sha: 44f925b174ab2b011fdaf825af2ace99e8809f4a
+    changeNotes: Allow pass Order Items from variable
   - sha: 7fda1450621d1e1398e08262c33a168fb6021463
     changeNotes: Initial Version
