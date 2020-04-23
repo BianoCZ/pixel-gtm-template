@@ -228,11 +228,6 @@ ___TEMPLATE_PARAMETERS___
     "displayName": "Event Data",
     "subParams": [
       {
-        "type": "LABEL",
-        "name": "purchase_dl_order_items",
-        "displayName": "Data Layer item \"bianoPixel.orderItems\" must contain array of purchased items described in https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
-      },
-      {
         "type": "TEXT",
         "name": "purchase_orderId",
         "displayName": "Order ID",
@@ -267,6 +262,19 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "alwaysInSummary": true
+      },
+      {
+        "type": "TEXT",
+        "name": "purchase_items",
+        "displayName": "Order Items - Select variable of type Data Layer or Custom JavaScript returning Array of purchased items",
+        "simpleValueType": true,
+        "alwaysInSummary": true,
+        "canBeEmptyString": true
+      },
+      {
+        "type": "LABEL",
+        "name": "purchase_dl_order_items",
+        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
       }
     ],
     "enablingConditions": [
@@ -371,12 +379,17 @@ if (data.eventType === 'page_view') {
     currency: data.purchase_currency || null,
   };
   
-  const orderItems = copyFromDataLayer('bianoPixel.orderItems') || [];
+  let orderItems;
+  if (!!data.purchase_items) {
+    orderItems = data.purchase_items;
+  } else {
+    orderItems = copyFromDataLayer('bianoPixel.orderItems');
+  }
+
   if (data.debug) {
     log('bianoPixel.orderItems', orderItems);
   }
   const items = getType(orderItems) !== 'array' ? [] : orderItems.map((item) => {
-    // TODO: skip empty objects?
     return {
       id: item.id || null,
       quantity: item.quantity || null,
