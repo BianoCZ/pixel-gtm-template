@@ -148,6 +148,13 @@ ___TEMPLATE_PARAMETERS___
           }
         ],
         "alwaysInSummary": true
+      },
+      {
+        "type": "CHECKBOX",
+        "name": "product_view_bianoButton",
+        "checkboxText": "Enable Biano Button",
+        "simpleValueType": true,
+        "alwaysInSummary": false
       }
     ],
     "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-GTM.pdf",
@@ -360,6 +367,10 @@ bianoTrack('init', data.merchantId);
 if (data.eventType === 'page_view') {
   bianoTrack('track', data.eventType);
 } else if (data.eventType === 'product_view') {
+  if (data.product_view_bianoButton) {
+    bianoTrack('init-button');
+  }
+  
   const values = {
     id: data.product_view_productId || null,
   };
