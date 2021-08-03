@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
 versions:
+  - sha: e628531fa9a0a9c8399561fbb60c5945f97c07cf
+    changeNotes: Add email and shipping date for Biano Star
   - sha: 451211d6d7688384eee711ce4e1699c93af05029
     changeNotes: Add Enable Biano Button checkbox to Product View
   - sha: a050fd49124d0d1e944e67a9c393b8ff1b3b060a
