@@ -282,6 +282,27 @@ ___TEMPLATE_PARAMETERS___
         "type": "LABEL",
         "name": "purchase_dl_order_items",
         "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
+      },
+      {
+        "type": "LABEL",
+        "name": "purchase_review_label",
+        "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews."
+      },
+      {
+        "type": "TEXT",
+        "name": "purchase_customer_email",
+        "displayName": "Customer email",
+        "simpleValueType": true,
+        "valueValidators": [],
+        "alwaysInSummary": true
+      },
+      {
+        "type": "TEXT",
+        "name": "purchase_shipping_date",
+        "displayName": "Shipping date",
+        "simpleValueType": true,
+        "valueValidators": [],
+        "alwaysInSummary": true
       }
     ],
     "enablingConditions": [
@@ -390,6 +411,8 @@ if (data.eventType === 'page_view') {
     id: data.purchase_orderId || null,
     order_price: data.purchase_orderPrice || null,
     currency: data.purchase_currency || null,
+    customer_email: data.purchase_customer_email || null,
+    shipping_date: data.purchase_shipping_date || null,
   };
   
   let orderItems;
