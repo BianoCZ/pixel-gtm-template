@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
 versions:
+  - sha: b1fbeec584cd045920fd755fb2a6dd4d55f7be0f
+    changeNotes: Prevent null coalesce numeric values
   - sha: e628531fa9a0a9c8399561fbb60c5945f97c07cf
     changeNotes: Add email and shipping date for Biano Star
   - sha: 451211d6d7688384eee711ce4e1699c93af05029
