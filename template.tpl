@@ -393,30 +393,30 @@ if (data.eventType === 'page_view') {
   }
   
   const values = {
-    id: data.product_view_productId || null,
+    id: data.product_view_productId,
   };
 
   bianoTrack('track', data.eventType, values);
 } else if (data.eventType === 'add_to_cart') {
   const values = {
-    id: data.add_to_cart_productId || null,
-    quantity: data.add_to_cart_quantity || null,
-    unit_price: data.add_to_cart_unitPrice || null,
-    currency: data.add_to_cart_currency || null,
+    id: data.add_to_cart_productId,
+    quantity: data.add_to_cart_quantity,
+    unit_price: data.add_to_cart_unitPrice,
+    currency: data.add_to_cart_currency,
   };
 
   bianoTrack('track', data.eventType, values);
 } else if (data.eventType === 'purchase') {
   let values = {
-    id: data.purchase_orderId || null,
-    order_price: data.purchase_orderPrice || null,
-    currency: data.purchase_currency || null,
+    id: data.purchase_orderId,
+    order_price: data.purchase_orderPrice,
+    currency: data.purchase_currency,
     customer_email: data.purchase_customer_email || null,
     shipping_date: data.purchase_shipping_date || null,
   };
   
   let orderItems;
-  if (!!data.purchase_items) {
+  if (data.purchase_items) {
     orderItems = data.purchase_items;
   } else {
     orderItems = copyFromDataLayer('bianoPixel.orderItems');
@@ -425,14 +425,7 @@ if (data.eventType === 'page_view') {
   if (data.debug) {
     log('bianoPixel.orderItems', orderItems);
   }
-  const items = getType(orderItems) !== 'array' ? [] : orderItems.map((item) => {
-    return {
-      id: item.id || null,
-      quantity: item.quantity || null,
-      unit_price: item.unit_price || null,
-    };
-  });
-  values.items = items;
+  values.items = orderItems;
 
   bianoTrack('track', data.eventType, values);
 }
