@@ -386,7 +386,11 @@ const bianoTrack = getBianoTrack();
 bianoTrack('init', data.merchantId);
 
 if (data.eventType === 'page_view') {
-  bianoTrack('track', data.eventType);
+  const values = {
+    source: 'gtm',
+  };
+
+  bianoTrack('track', data.eventType, values);
 } else if (data.eventType === 'product_view') {
   if (data.product_view_bianoButton) {
     bianoTrack('init-button');
@@ -394,6 +398,7 @@ if (data.eventType === 'page_view') {
   
   const values = {
     id: data.product_view_productId,
+    source: 'gtm',
   };
 
   bianoTrack('track', data.eventType, values);
@@ -403,6 +408,7 @@ if (data.eventType === 'page_view') {
     quantity: data.add_to_cart_quantity,
     unit_price: data.add_to_cart_unitPrice,
     currency: data.add_to_cart_currency,
+    source: 'gtm',
   };
 
   bianoTrack('track', data.eventType, values);
@@ -413,6 +419,7 @@ if (data.eventType === 'page_view') {
     currency: data.purchase_currency,
     customer_email: data.purchase_customer_email || null,
     shipping_date: data.purchase_shipping_date || null,
+    source: 'gtm',
   };
   
   let orderItems;
