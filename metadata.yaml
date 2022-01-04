@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
 versions:
+  - sha: bfcb18503988110f121fd30232bc6736418555db
+    changeNotes: Add cookie consent mode
   - sha: 99c025bcd00d1267979fc35b2bdd545ff8c833b5
     changeNotes: Add source to all events
   - sha: b1fbeec584cd045920fd755fb2a6dd4d55f7be0f
