@@ -44,6 +44,15 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "TEXT",
+    "name": "consent",
+    "simpleValueType": true,
+    "alwaysInSummary": true,
+    "canBeEmptyString": true,
+    "displayName": "User cookie consent",
+    "help": "Use variable with value whether user accepted tracking cookies."
+  },
+  {
+    "type": "TEXT",
     "name": "merchantId",
     "displayName": "Merchant ID",
     "simpleValueType": true,
@@ -351,6 +360,8 @@ if (domain === '') {
   return;
 }
 
+const consent = !!data.consent;
+
 // Utility function to use either bianoTrack.queue[]
 // (if the Biano Pixel SDK hasn't loaded yet), or bianoTrack.callMethod()
 // if the SDK has loaded.
@@ -381,6 +392,9 @@ const getBianoTrack = () => {
 
 // Get reference to the global method
 const bianoTrack = getBianoTrack();
+
+// Set consent mode
+bianoTrack('consent', consent);
 
 // Initialize bianoTrack with given Merchant ID
 bianoTrack('init', data.merchantId);
@@ -437,8 +451,9 @@ if (data.eventType === 'page_view') {
   bianoTrack('track', data.eventType, values);
 }
 
+const scriptDomain = consent ? ('https://pixel.' + domain) : 'https://bianopixel.com'; 
 const scriptPath = data.debug ? 'debug' : 'min';
-const scriptUrl = 'https://pixel.' + domain + '/' + scriptPath + '/pixel.js';
+const scriptUrl = scriptDomain + '/' + scriptPath + '/pixel.js';
 injectScript(scriptUrl, data.gtmOnSuccess, data.gtmOnFailure, scriptUrl);
 
 
@@ -656,6 +671,10 @@ ___WEB_PERMISSIONS___
           "value": {
             "type": 2,
             "listItem": [
+              {
+                "type": 1,
+                "string": "https://bianopixel.com/*/pixel.js"
+              },
               {
                 "type": 1,
                 "string": "https://pixel.biano.cz/*/pixel.js"
