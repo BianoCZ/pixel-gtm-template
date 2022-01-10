@@ -47,7 +47,7 @@ ___TEMPLATE_PARAMETERS___
     "name": "consent",
     "simpleValueType": true,
     "alwaysInSummary": true,
-    "canBeEmptyString": true,
+    "canBeEmptyString": false,
     "displayName": "User cookie consent",
     "help": "Use variable with value whether user accepted tracking cookies."
   },
@@ -360,7 +360,7 @@ if (domain === '') {
   return;
 }
 
-const consent = !!data.consent;
+const consent = data.consent === undefined ? true : !!data.consent;
 
 // Utility function to use either bianoTrack.queue[]
 // (if the Biano Pixel SDK hasn't loaded yet), or bianoTrack.callMethod()
