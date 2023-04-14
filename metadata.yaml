@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
 versions:
+  - sha: f400499fbbb1593a647d3e82e7a1207db3b9e632
+    changeNotes: Support Greece and Italy
   - sha: 47ef8535ef8b02463514186296954fa0523f1b2b
     changeNotes: Fix consent mode data type
   - sha: bfcb18503988110f121fd30232bc6736418555db
