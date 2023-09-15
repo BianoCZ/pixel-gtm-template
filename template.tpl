@@ -1,4 +1,4 @@
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -293,25 +293,55 @@ ___TEMPLATE_PARAMETERS___
         "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
       },
       {
-        "type": "LABEL",
-        "name": "purchase_review_label",
-        "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews."
-      },
-      {
-        "type": "TEXT",
-        "name": "purchase_customer_email",
-        "displayName": "Customer email",
-        "simpleValueType": true,
-        "valueValidators": [],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "purchase_shipping_date",
-        "displayName": "Shipping date",
-        "simpleValueType": true,
-        "valueValidators": [],
-        "alwaysInSummary": true
+        "type": "GROUP",
+        "name": "bianoStar",
+        "displayName": "Biano Star",
+        "groupStyle": "NO_ZIPPY",
+        "subParams": [
+          {
+            "type": "LABEL",
+            "name": "purchase_review_label",
+            "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews."
+          },
+          {
+            "type": "TEXT",
+            "name": "purchase_customer_email",
+            "displayName": "Customer email",
+            "simpleValueType": true,
+            "valueValidators": [],
+            "alwaysInSummary": true
+          },
+          {
+            "type": "TEXT",
+            "name": "purchase_shipping_date",
+            "displayName": "Expected shipping date",
+            "simpleValueType": true,
+            "alwaysInSummary": false,
+            "help": "Enter variable with date in format YYYY-MM-DD (ie: 2002-09-14).",
+            "enablingConditions": [
+              {
+                "paramName": "purchase_shipping_days",
+                "paramValue": "",
+                "type": "NOT_PRESENT"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "purchase_shipping_days",
+            "displayName": "Expected shipping days",
+            "simpleValueType": true,
+            "valueUnit": "days",
+            "help": "Alternatively you can fill in expected order shipping in days.",
+            "enablingConditions": [
+              {
+                "paramName": "purchase_shipping_date",
+                "paramValue": "",
+                "type": "NOT_PRESENT"
+              }
+            ]
+          }
+        ]
       }
     ],
     "enablingConditions": [
@@ -334,6 +364,8 @@ const callInWindow = require('callInWindow');
 const copyFromWindow = require('copyFromWindow');
 const setInWindow = require('setInWindow');
 const injectScript = require('injectScript');
+const makeInteger = require('makeInteger');
+const getTimestampMillis = require('getTimestampMillis');
 const getType = require('getType');
 const log = require('logToConsole');
 
@@ -434,9 +466,28 @@ if (data.eventType === 'page_view') {
     order_price: data.purchase_orderPrice,
     currency: data.purchase_currency,
     customer_email: data.purchase_customer_email || null,
-    shipping_date: data.purchase_shipping_date || null,
+    shipping_date: null,
     source: 'gtm',
   };
+  
+  if (data.purchase_shipping_days && (getType(data.purchase_shipping_days) === 'string' || getType(data.purchase_shipping_days) === 'number')) {
+      const shipping_days_int = makeInteger(data.purchase_shipping_days);
+      if (data.purchase_shipping_days == shipping_days_int) {
+        const shippingDate = makeInteger(getTimestampMillis() / 1000) + (shipping_days_int * 24 * 60 * 60);
+        if (data.debug) {
+          log('shippingDate as UNIX timestamp', shippingDate);
+        }
+
+        values.shipping_date = shippingDate;
+      }
+    } else if (data.purchase_shipping_date && getType(data.purchase_shipping_date) === 'string') {
+      const shippingDate = data.purchase_shipping_date.substring(0, 10);
+      if (data.debug) {
+        log('shippingDate as DATE', shippingDate);
+      }
+
+      values.shipping_date = shippingDate;
+    }
   
   let orderItems;
   if (data.purchase_items) {
