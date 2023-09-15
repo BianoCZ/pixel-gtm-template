@@ -166,7 +166,7 @@ ___TEMPLATE_PARAMETERS___
         "alwaysInSummary": false
       }
     ],
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-GTM.pdf",
+    "help": "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
     "enablingConditions": [
       {
         "paramName": "eventType",
@@ -236,7 +236,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ],
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
+    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
   },
   {
     "type": "GROUP",
@@ -290,7 +290,7 @@ ___TEMPLATE_PARAMETERS___
       {
         "type": "LABEL",
         "name": "purchase_dl_order_items",
-        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
+        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
       },
       {
         "type": "GROUP",
@@ -351,7 +351,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ],
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
+    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
   }
 ]
 
