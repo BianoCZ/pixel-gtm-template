@@ -384,6 +384,7 @@ const domainMap = {
   pt: 'biano.pt',
   gr: 'biano.gr',
   it: 'biano.it',
+  bg: 'biano.bg',
   br: 'biano.com.br',
 };
 
@@ -759,6 +760,10 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://pixel.biano.it/*/pixel.js"
+              },
+              {
+                "type": 1,
+                "string": "https://pixel.biano.bg/*/pixel.js"
               },
               {
                 "type": 1,
