@@ -457,7 +457,7 @@ let consent = false;
 if (data.consent_source === 'gtm') {
   consent = isConsentGranted(data.consent_gtm_source);
 } else if (data.consent_source === 'var') {
-  if (data.consent === 'true' || data.consent === '1') consent = true;
+  if (data.consent === 'true' || data.consent === '1' || data.consent === undefined) consent = true;
   else if (data.consent === 'false' || data.consent === '0') consent = false;
   else consent = !!data.consent;
 }
@@ -847,6 +847,10 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://pixel.biano.it/*/pixel.js"
+              },
+              {
+                "type": 1,
+                "string": "https://pixel.biano.bg/*/pixel.js"
               },
               {
                 "type": 1,
