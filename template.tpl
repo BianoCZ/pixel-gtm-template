@@ -43,13 +43,37 @@ ___TEMPLATE_PARAMETERS___
     "alwaysInSummary": true
   },
   {
-    "type": "TEXT",
-    "name": "consent",
+    "type": "SELECT",
+    "name": "consent_source",
+    "displayName": "How consent status is loaded",
+    "macrosInSelect": false,
+    "selectItems": [
+      {
+        "value": "gtm",
+        "displayValue": "Use GTM consent mode"
+      },
+      {
+        "value": "var",
+        "displayValue": "Load consent from variable"
+      }
+    ],
     "simpleValueType": true,
-    "alwaysInSummary": true,
-    "canBeEmptyString": false,
-    "displayName": "User cookie consent",
-    "help": "Use variable with value whether user accepted tracking cookies."
+    "subParams": [
+      {
+        "type": "TEXT",
+        "name": "consent",
+        "displayName": "User cookie consent",
+        "simpleValueType": true,
+        "help": "Use variable with value whether user accepted tracking cookies.",
+        "enablingConditions": [
+          {
+            "paramName": "consent_source",
+            "paramValue": "var",
+            "type": "EQUALS"
+          }
+        ]
+      }
+    ]
   },
   {
     "type": "TEXT",
@@ -368,9 +392,17 @@ const makeInteger = require('makeInteger');
 const getTimestampMillis = require('getTimestampMillis');
 const getType = require('getType');
 const log = require('logToConsole');
+const isConsentGranted = require('isConsentGranted');
 
 if (data.debug) {
   log('data', data);
+}
+
+let consent = false;
+if (data.consent_source === 'gtm') {
+  consent = isConsentGranted('analytics_storage');
+} else if (data.consent_source === 'var') {
+  consent = !!data.consent;
 }
 
 const domainMap = {
@@ -394,8 +426,6 @@ if (domain === '') {
   data.gtmOnFailure();
   return;
 }
-
-const consent = data.consent === undefined ? true : !!data.consent;
 
 // Utility function to use either bianoTrack.queue[]
 // (if the Biano Pixel SDK hasn't loaded yet), or bianoTrack.callMethod()
@@ -763,10 +793,6 @@ ___WEB_PERMISSIONS___
               },
               {
                 "type": 1,
-                "string": "https://pixel.biano.bg/*/pixel.js"
-              },
-              {
-                "type": 1,
                 "string": "https://pixel.biano.com.br/*/pixel.js"
               }
             ]
@@ -787,6 +813,13 @@ ___WEB_PERMISSIONS___
       },
       "param": [
         {
+          "key": "allowedKeys",
+          "value": {
+            "type": 1,
+            "string": "specific"
+          }
+        },
+        {
           "key": "keyPatterns",
           "value": {
             "type": 2,
@@ -794,6 +827,59 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "bianoPixel.*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "access_consent",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "consentTypes",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "analytics_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
               }
             ]
           }
