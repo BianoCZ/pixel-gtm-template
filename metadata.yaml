@@ -1,5 +1,5 @@
 homepage: "https://www.biano.cz"
-documentation: "https://pixel.biano.cz/pdf/GUIDE-GTM.pdf"
+documentation: "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
 versions:
   - sha: 59cb8ef8ce85ec784c59f55b1252144500e5f90f
     changeNotes: Revert GTM consent mode
