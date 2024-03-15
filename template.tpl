@@ -22,7 +22,7 @@ ___INFO___
   ],
   "brand": {
     "id": "github.com_BianoCZ",
-    "displayName": "BIANO",
+    "displayName": "BianoCZ",
     "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAYKADAAQAAAABAAAAYAAAAACpM19OAAADvUlEQVR4Ae2cT0sbQRjGX0sVRHKKOcVPkKDG4NFLai8WC/ZsP0Kl1XqsaaHtpe2l1n4F/13rtXpsQtsQieLdk5CoiNWIojYjLCbZ7BI2JM/s7DMQdmdm12fn+c07M9mRdN1WkjDBHHgAU6bwnQMEAO4IBEAAYAfA8owAAgA7AJZnBBAA2AGw/MNm9B+lxpu5jNfUObC59bOuxJ7lEGT3pKMlBNBRu+1iBGD3pKMlBNBRu+1iBGD3pKMlTa2CnJ6omVne6V6TyltZJTICwD2BAAgA7ABYnhFAAGAHwPKMAAIAOwCWZwQQANgBsDwjgADADoDlGQEEAHYALM8IIACwA2B5RgABgB0Ay7e0I9auZ/e6w9Tf3y/RgajEYzGZejYlKq970hKAV9NKpZKoz3Z+W9bW1mXiyYTMzLyQ7u5ur3+y7fcZOwdcX1/Lxo8NefVyVo6OjtpupFcBYwFYhuzt7cnb9Du5ubmxirQ6Gg9Aub27uyurK6taGW89TCAAqMYuL6/I1dWV1W5tjr6ahCefTsrc3GxD887OziTzKyNLS9/l5OTEds35+blks1kZGxuz1SELjImAvr4+GX88LgvpN45+/vn917EOVWEMAMvAZDIp4XDYytYcT/+d1uR1yBgHwM3Ui/KFWzWkzjgAuVxODg8PG5o5UPmWrFvy1STsZl71JOx0XSwec6qClfsKgPpmqz5eUigUktHRUS+3tvUe44YgJ7emn0+LWinplgIDIB6P6+b93fMEBkB6IS0HBwfaQQgMgOPjY1n8ukgASAcymawUCgXkI9i0fbUKcnsXpFp2eXkpOzs7lZ7+Tfb3922NVQWbm1syODjYsA5RaNQQ1NPTI+pVxOcvn6S3t7ehn2q3TKdkFADL2EgkIolEwsrWHIvFYk0enTESgJupuu2MGQlA9fJ8Pt+QQySi139K+GoSbuhoVWH1JFwul6tq7k+HhobuMxqc+QpAK++CLK9TqZR1qsXRyCHIydnhxLCMJEecqiHlgQGg3obOz7+GmOwmGggAyvwPH99LNMoNGbfO0JY6Neyonq+j+arBvpqEmyGkvgGrpaZa7agJV7cxv74NWgII0u8QBWIOqO91OuUJAEyDAAgA7ABYnhFAAGAHwPKMAAIAOwCWZwQQANgBsDwjgADADoDlGQEEAHYALM8IIACwA2B5RgAYQEs7Yl5/1wfcZq3kGQFgHARAAGAHwPKMAAIAOwCW77qtJPAzBFqeQxAYPwEQANgBsDwjgADADoDlGQEEAHYALM8IAAP4DwDWsSBZM5AhAAAAAElFTkSuQmCC"
   },
   "containerContexts": [
@@ -298,8 +298,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "GROUP",
         "subParams": [
           {
-            "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews.",f
-
+            "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews.",
             "name": "purchase_review_label",
             "type": "LABEL"
           },
@@ -354,12 +353,12 @@ ___TEMPLATE_PARAMETERS___
       {
         "macrosInSelect": false,
         "selectItems": [
-         {
-            "displayValue": "Do not use native GTM consent mode",
+          {
+            "displayValue": "Do not use GTM consent mode",
             "value": "var"
           },
           {
-            "displayValue": "Use native GTM consent mode",
+            "displayValue": "Use GTM consent mode",
             "value": "gtm"
           }
         ],
@@ -426,6 +425,7 @@ const getTimestampMillis = require('getTimestampMillis');
 const getType = require('getType');
 const log = require('logToConsole');
 const isConsentGranted = require('isConsentGranted');
+const addConsentListener = require('addConsentListener');
 
 if (data.debug) {
   log('data', data);
@@ -434,8 +434,21 @@ if (data.debug) {
 let consent = false;
 if (data.consent_source === 'gtm') {
   consent = isConsentGranted(data.consent_gtm_source);
+
+  // If consent was granted later, reinitialize consent state in Biano pixel
+  if (!isConsentGranted(data.consent_gtm_source)) {
+      let wasCalled = false;
+      addConsentListener(data.consent_gtm_source, (consentType, granted) => {
+        if (wasCalled) return;
+        wasCalled = true;
+
+        if (granted) {
+          bianoTrack('consent', granted);
+        }
+    });
+  }
 } else {
-  else consent = true;
+  consent = true;
 }
 
 const domainMap = {
@@ -491,7 +504,7 @@ const getBianoTrack = () => {
 // Get reference to the global method
 const bianoTrack = getBianoTrack();
 
-// Set consent mode
+// Set default consent mode
 bianoTrack('consent', consent);
 
 // Initialize bianoTrack with given Merchant ID
