@@ -22,7 +22,7 @@ ___INFO___
   ],
   "brand": {
     "id": "github.com_BianoCZ",
-    "displayName": "BIANO",
+    "displayName": "BianoCZ",
     "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAYKADAAQAAAABAAAAYAAAAACpM19OAAADvUlEQVR4Ae2cT0sbQRjGX0sVRHKKOcVPkKDG4NFLai8WC/ZsP0Kl1XqsaaHtpe2l1n4F/13rtXpsQtsQieLdk5CoiNWIojYjLCbZ7BI2JM/s7DMQdmdm12fn+c07M9mRdN1WkjDBHHgAU6bwnQMEAO4IBEAAYAfA8owAAgA7AJZnBBAA2AGw/MNm9B+lxpu5jNfUObC59bOuxJ7lEGT3pKMlBNBRu+1iBGD3pKMlBNBRu+1iBGD3pKMlTa2CnJ6omVne6V6TyltZJTICwD2BAAgA7ABYnhFAAGAHwPKMAAIAOwCWZwQQANgBsDwjgADADoDlGQEEAHYALM8IIACwA2B5RgABgB0Ay7e0I9auZ/e6w9Tf3y/RgajEYzGZejYlKq970hKAV9NKpZKoz3Z+W9bW1mXiyYTMzLyQ7u5ur3+y7fcZOwdcX1/Lxo8NefVyVo6OjtpupFcBYwFYhuzt7cnb9Du5ubmxirQ6Gg9Aub27uyurK6taGW89TCAAqMYuL6/I1dWV1W5tjr6ahCefTsrc3GxD887OziTzKyNLS9/l5OTEds35+blks1kZGxuz1SELjImAvr4+GX88LgvpN45+/vn917EOVWEMAMvAZDIp4XDYytYcT/+d1uR1yBgHwM3Ui/KFWzWkzjgAuVxODg8PG5o5UPmWrFvy1STsZl71JOx0XSwec6qClfsKgPpmqz5eUigUktHRUS+3tvUe44YgJ7emn0+LWinplgIDIB6P6+b93fMEBkB6IS0HBwfaQQgMgOPjY1n8ukgASAcymawUCgXkI9i0fbUKcnsXpFp2eXkpOzs7lZ7+Tfb3922NVQWbm1syODjYsA5RaNQQ1NPTI+pVxOcvn6S3t7ehn2q3TKdkFADL2EgkIolEwsrWHIvFYk0enTESgJupuu2MGQlA9fJ8Pt+QQySi139K+GoSbuhoVWH1JFwul6tq7k+HhobuMxqc+QpAK++CLK9TqZR1qsXRyCHIydnhxLCMJEecqiHlgQGg3obOz7+GmOwmGggAyvwPH99LNMoNGbfO0JY6Neyonq+j+arBvpqEmyGkvgGrpaZa7agJV7cxv74NWgII0u8QBWIOqO91OuUJAEyDAAgA7ABYnhFAAGAHwPKMAAIAOwCWZwQQANgBsDwjgADADoDlGQEEAHYALM8IIACwA2B5RgAYQEs7Yl5/1wfcZq3kGQFgHARAAGAHwPKMAAIAOwCW77qtJPAzBFqeQxAYPwEQANgBsDwjgADADoDlGQEEAHYALM8IAAP4DwDWsSBZM5AhAAAAAElFTkSuQmCC"
   },
   "containerContexts": [
@@ -35,323 +35,379 @@ ___TEMPLATE_PARAMETERS___
 
 [
   {
-    "type": "CHECKBOX",
+    "help": "Debug Mode enables logging into console which may be helpful during implementation.",
+    "alwaysInSummary": true,
+    "simpleValueType": true,
     "name": "debug",
     "checkboxText": "Debug Mode",
-    "simpleValueType": true,
-    "help": "Debug Mode enables logging into console which may be helpful during implementation.",
-    "alwaysInSummary": true
+    "type": "CHECKBOX"
   },
   {
-    "type": "TEXT",
-    "name": "consent",
-    "simpleValueType": true,
+    "help": "Your unique Merchant ID provided by Biano.",
     "alwaysInSummary": true,
-    "canBeEmptyString": false,
-    "displayName": "User cookie consent",
-    "help": "Use variable with value whether user accepted tracking cookies."
-  },
-  {
-    "type": "TEXT",
-    "name": "merchantId",
+    "valueValidators": [
+      {
+        "type": "NON_EMPTY"
+      }
+    ],
     "displayName": "Merchant ID",
     "simpleValueType": true,
-    "valueValidators": [
-      {
-        "type": "NON_EMPTY"
-      }
-    ],
-    "help": "Your unique Merchant ID provided by Biano.",
-    "alwaysInSummary": true
+    "name": "merchantId",
+    "type": "TEXT"
   },
   {
-    "type": "SELECT",
-    "name": "eventType",
-    "displayName": "Event Type",
     "selectItems": [
       {
-        "value": "page_view",
-        "displayValue": "Page View"
+        "displayValue": "Page View",
+        "value": "page_view"
       },
       {
-        "value": "product_view",
-        "displayValue": "Product View"
+        "displayValue": "Product View",
+        "value": "product_view"
       },
       {
-        "value": "add_to_cart",
-        "displayValue": "Add to Cart"
+        "displayValue": "Add to Cart",
+        "value": "add_to_cart"
       },
       {
-        "value": "purchase",
-        "displayValue": "Purchase"
+        "displayValue": "Purchase",
+        "value": "purchase"
       }
     ],
-    "simpleValueType": true,
     "valueValidators": [
       {
         "type": "NON_EMPTY"
       }
-    ]
+    ],
+    "displayName": "Event Type",
+    "simpleValueType": true,
+    "name": "eventType",
+    "type": "SELECT"
   },
   {
-    "type": "LABEL",
-    "name": "page_view_guide",
-    "displayName": "Use this event whenever a user displays your website and there is no better suitable event.",
     "enablingConditions": [
       {
         "paramName": "eventType",
-        "paramValue": "page_view",
-        "type": "EQUALS"
-      }
-    ]
-  },
-  {
-    "type": "LABEL",
-    "name": "product_view_guide",
-    "displayName": "Use this event whenever a user displays a product detail on your website",
-    "enablingConditions": [
-      {
-        "paramName": "eventType",
-        "paramValue": "product_view",
-        "type": "EQUALS"
-      }
-    ]
-  },
-  {
-    "type": "LABEL",
-    "name": "add_to_cart_guide",
-    "displayName": "Use this event whenever a user adds a product to the shopping cart.",
-    "enablingConditions": [
-      {
-        "paramName": "eventType",
-        "paramValue": "add_to_cart",
-        "type": "EQUALS"
-      }
-    ]
-  },
-  {
-    "type": "LABEL",
-    "name": "purchase_guide",
-    "displayName": "Use this event after the user has successfully placed an order.",
-    "enablingConditions": [
-      {
-        "paramName": "eventType",
-        "paramValue": "purchase",
-        "type": "EQUALS"
-      }
-    ]
-  },
-  {
-    "type": "GROUP",
-    "name": "product_view_eventData",
-    "displayName": "Event Data",
-    "subParams": [
-      {
-        "type": "TEXT",
-        "name": "product_view_productId",
-        "displayName": "Product ID",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "CHECKBOX",
-        "name": "product_view_bianoButton",
-        "checkboxText": "Enable Biano Button",
-        "simpleValueType": true,
-        "alwaysInSummary": false
+        "type": "EQUALS",
+        "paramValue": "page_view"
       }
     ],
+    "displayName": "Use this event whenever a user displays your website and there is no better suitable event.",
+    "name": "page_view_guide",
+    "type": "LABEL"
+  },
+  {
+    "enablingConditions": [
+      {
+        "paramName": "eventType",
+        "type": "EQUALS",
+        "paramValue": "product_view"
+      }
+    ],
+    "displayName": "Use this event whenever a user displays a product detail on your website",
+    "name": "product_view_guide",
+    "type": "LABEL"
+  },
+  {
+    "enablingConditions": [
+      {
+        "paramName": "eventType",
+        "type": "EQUALS",
+        "paramValue": "add_to_cart"
+      }
+    ],
+    "displayName": "Use this event whenever a user adds a product to the shopping cart.",
+    "name": "add_to_cart_guide",
+    "type": "LABEL"
+  },
+  {
+    "enablingConditions": [
+      {
+        "paramName": "eventType",
+        "type": "EQUALS",
+        "paramValue": "purchase"
+      }
+    ],
+    "displayName": "Use this event after the user has successfully placed an order.",
+    "name": "purchase_guide",
+    "type": "LABEL"
+  },
+  {
     "help": "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
     "enablingConditions": [
       {
         "paramName": "eventType",
-        "paramValue": "product_view",
-        "type": "EQUALS"
+        "type": "EQUALS",
+        "paramValue": "product_view"
+      }
+    ],
+    "displayName": "Event Data",
+    "name": "product_view_eventData",
+    "type": "GROUP",
+    "subParams": [
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Product ID",
+        "simpleValueType": true,
+        "name": "product_view_productId",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": false,
+        "simpleValueType": true,
+        "name": "product_view_bianoButton",
+        "checkboxText": "Enable Biano Button",
+        "type": "CHECKBOX"
+      }
+    ]
+  },
+  {
+    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+    "enablingConditions": [
+      {
+        "paramName": "eventType",
+        "type": "EQUALS",
+        "paramValue": "add_to_cart"
+      }
+    ],
+    "displayName": "Event Data",
+    "name": "add_to_cart_eventData",
+    "type": "GROUP",
+    "subParams": [
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Product ID",
+        "simpleValueType": true,
+        "name": "add_to_cart_productId",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Quantity",
+        "simpleValueType": true,
+        "name": "add_to_cart_quantity",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Unit Price",
+        "simpleValueType": true,
+        "name": "add_to_cart_unitPrice",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Currency (CZK, EUR, etc..)",
+        "simpleValueType": true,
+        "name": "add_to_cart_currency",
+        "type": "TEXT"
+      }
+    ]
+  },
+  {
+    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+    "enablingConditions": [
+      {
+        "paramName": "eventType",
+        "type": "EQUALS",
+        "paramValue": "purchase"
+      }
+    ],
+    "displayName": "Event Data",
+    "name": "purchase_eventData",
+    "type": "GROUP",
+    "subParams": [
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Order ID",
+        "simpleValueType": true,
+        "name": "purchase_orderId",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Total Order Price",
+        "simpleValueType": true,
+        "name": "purchase_orderPrice",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": true,
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "displayName": "Currency (CZK, EUR, etc..)",
+        "simpleValueType": true,
+        "name": "purchase_currency",
+        "type": "TEXT"
+      },
+      {
+        "alwaysInSummary": true,
+        "displayName": "Order Items - Select variable of type Data Layer or Custom JavaScript returning Array of purchased items",
+        "simpleValueType": true,
+        "name": "purchase_items",
+        "type": "TEXT",
+        "canBeEmptyString": true
+      },
+      {
+        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+        "name": "purchase_dl_order_items",
+        "type": "LABEL"
+      },
+      {
+        "displayName": "Biano Star",
+        "name": "bianoStar",
+        "groupStyle": "NO_ZIPPY",
+        "type": "GROUP",
+        "subParams": [
+          {
+            "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews.",
+            "name": "purchase_review_label",
+            "type": "LABEL"
+          },
+          {
+            "alwaysInSummary": true,
+            "valueValidators": [],
+            "displayName": "Customer email",
+            "simpleValueType": true,
+            "name": "purchase_customer_email",
+            "type": "TEXT"
+          },
+          {
+            "help": "Enter variable with date in format YYYY-MM-DD (ie: 2002-09-14).",
+            "alwaysInSummary": false,
+            "enablingConditions": [
+              {
+                "paramName": "purchase_shipping_days",
+                "type": "NOT_PRESENT",
+                "paramValue": ""
+              }
+            ],
+            "displayName": "Expected shipping date",
+            "simpleValueType": true,
+            "name": "purchase_shipping_date",
+            "type": "TEXT"
+          },
+          {
+            "help": "Alternatively you can fill in expected order shipping in days.",
+            "enablingConditions": [
+              {
+                "paramName": "purchase_shipping_date",
+                "type": "NOT_PRESENT",
+                "paramValue": ""
+              }
+            ],
+            "displayName": "Expected shipping days",
+            "simpleValueType": true,
+            "name": "purchase_shipping_days",
+            "valueUnit": "days",
+            "type": "TEXT"
+          }
+        ]
       }
     ]
   },
   {
     "type": "GROUP",
-    "name": "add_to_cart_eventData",
-    "displayName": "Event Data",
+    "name": "group_consent",
+    "displayName": "Consent",
+    "groupStyle": "NO_ZIPPY",
     "subParams": [
       {
-        "type": "TEXT",
-        "name": "add_to_cart_productId",
-        "displayName": "Product ID",
-        "simpleValueType": true,
-        "valueValidators": [
+        "macrosInSelect": false,
+        "selectItems": [
           {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "add_to_cart_quantity",
-        "displayName": "Quantity",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "add_to_cart_unitPrice",
-        "displayName": "Unit Price",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "add_to_cart_currency",
-        "displayName": "Currency (CZK, EUR, etc..)",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      }
-    ],
-    "enablingConditions": [
-      {
-        "paramName": "eventType",
-        "paramValue": "add_to_cart",
-        "type": "EQUALS"
-      }
-    ],
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
-  },
-  {
-    "type": "GROUP",
-    "name": "purchase_eventData",
-    "displayName": "Event Data",
-    "subParams": [
-      {
-        "type": "TEXT",
-        "name": "purchase_orderId",
-        "displayName": "Order ID",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "purchase_orderPrice",
-        "displayName": "Total Order Price",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "purchase_currency",
-        "displayName": "Currency (CZK, EUR, etc..)",
-        "simpleValueType": true,
-        "valueValidators": [
-          {
-            "type": "NON_EMPTY"
-          }
-        ],
-        "alwaysInSummary": true
-      },
-      {
-        "type": "TEXT",
-        "name": "purchase_items",
-        "displayName": "Order Items - Select variable of type Data Layer or Custom JavaScript returning Array of purchased items",
-        "simpleValueType": true,
-        "alwaysInSummary": true,
-        "canBeEmptyString": true
-      },
-      {
-        "type": "LABEL",
-        "name": "purchase_dl_order_items",
-        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
-      },
-      {
-        "type": "GROUP",
-        "name": "bianoStar",
-        "displayName": "Biano Star",
-        "groupStyle": "NO_ZIPPY",
-        "subParams": [
-          {
-            "type": "LABEL",
-            "name": "purchase_review_label",
-            "displayName": "Optionally enter customer email and estimated shipping date to allow customer reviews."
+            "displayValue": "Do not use GTM consent mode",
+            "value": "var"
           },
           {
-            "type": "TEXT",
-            "name": "purchase_customer_email",
-            "displayName": "Customer email",
-            "simpleValueType": true,
-            "valueValidators": [],
-            "alwaysInSummary": true
+            "displayValue": "Use GTM consent mode",
+            "value": "gtm"
+          }
+        ],
+        "displayName": "How consent status is loaded",
+        "simpleValueType": true,
+        "name": "consent_source",
+        "type": "SELECT",
+        "defaultValue": "var"
+      },
+      {
+        "type": "SELECT",
+        "name": "consent_gtm_source",
+        "displayName": "Consent Type for Tracking",
+        "macrosInSelect": false,
+        "selectItems": [
+          {
+            "value": "analytics_storage",
+            "displayValue": "analytics_storage"
           },
           {
-            "type": "TEXT",
-            "name": "purchase_shipping_date",
-            "displayName": "Expected shipping date",
-            "simpleValueType": true,
-            "alwaysInSummary": false,
-            "help": "Enter variable with date in format YYYY-MM-DD (ie: 2002-09-14).",
-            "enablingConditions": [
-              {
-                "paramName": "purchase_shipping_days",
-                "paramValue": "",
-                "type": "NOT_PRESENT"
-              }
-            ]
+            "value": "ad_storage",
+            "displayValue": "ad_storage"
           },
           {
-            "type": "TEXT",
-            "name": "purchase_shipping_days",
-            "displayName": "Expected shipping days",
-            "simpleValueType": true,
-            "valueUnit": "days",
-            "help": "Alternatively you can fill in expected order shipping in days.",
-            "enablingConditions": [
-              {
-                "paramName": "purchase_shipping_date",
-                "paramValue": "",
-                "type": "NOT_PRESENT"
-              }
-            ]
+            "value": "personalization_storage",
+            "displayValue": "personalization_storage"
+          },
+          {
+            "value": "functionality_storage",
+            "displayValue": "functionality_storage"
+          }
+        ],
+        "simpleValueType": true,
+        "defaultValue": "analytics_storage",
+        "help": "",
+        "valueValidators": [
+          {
+            "type": "NON_EMPTY"
+          }
+        ],
+        "enablingConditions": [
+          {
+            "paramName": "consent_source",
+            "paramValue": "gtm",
+            "type": "EQUALS"
           }
         ]
       }
-    ],
-    "enablingConditions": [
-      {
-        "paramName": "eventType",
-        "paramValue": "purchase",
-        "type": "EQUALS"
-      }
-    ],
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
+    ]
   }
 ]
 
@@ -368,9 +424,31 @@ const makeInteger = require('makeInteger');
 const getTimestampMillis = require('getTimestampMillis');
 const getType = require('getType');
 const log = require('logToConsole');
+const isConsentGranted = require('isConsentGranted');
+const addConsentListener = require('addConsentListener');
 
 if (data.debug) {
   log('data', data);
+}
+
+let consent = false;
+if (data.consent_source === 'gtm') {
+  consent = isConsentGranted(data.consent_gtm_source);
+
+  // If consent was granted later, reinitialize consent state in Biano pixel
+  if (!isConsentGranted(data.consent_gtm_source)) {
+      let wasCalled = false;
+      addConsentListener(data.consent_gtm_source, (consentType, granted) => {
+        if (wasCalled) return;
+        wasCalled = true;
+
+        if (granted) {
+          bianoTrack('consent', granted);
+        }
+    });
+  }
+} else {
+  consent = true;
 }
 
 const domainMap = {
@@ -395,8 +473,6 @@ if (domain === '') {
   return;
 }
 
-const consent = data.consent === undefined ? true : !!data.consent;
-
 // Utility function to use either bianoTrack.queue[]
 // (if the Biano Pixel SDK hasn't loaded yet), or bianoTrack.callMethod()
 // if the SDK has loaded.
@@ -406,21 +482,21 @@ const getBianoTrack = () => {
   if (bianoTrack) {
     return bianoTrack;
   }
-  
+
   // Initialize the 'bianoTrack' global method to either use
   // bianoTrack.callMethod or bianoTrack.queue)
-  setInWindow('bianoTrack', function() {    
+  setInWindow('bianoTrack', function() {
     const callMethod = copyFromWindow('bianoTrack.callMethod.apply');
-    if (callMethod) {           
-      callInWindow('bianoTrack.callMethod.apply', null, arguments); 
-    } else {       
+    if (callMethod) {
+      callInWindow('bianoTrack.callMethod.apply', null, arguments);
+    } else {
       callInWindow('bianoTrack.queue.push', arguments);
     }
   });
 
   // Create the bianoTrack.queue
   createQueue('bianoTrack.queue');
-    
+
   // Return the global 'bianoTrack' method, created above
   return copyFromWindow('bianoTrack');
 };
@@ -428,7 +504,7 @@ const getBianoTrack = () => {
 // Get reference to the global method
 const bianoTrack = getBianoTrack();
 
-// Set consent mode
+// Set default consent mode
 bianoTrack('consent', consent);
 
 // Initialize bianoTrack with given Merchant ID
@@ -444,7 +520,7 @@ if (data.eventType === 'page_view') {
   if (data.product_view_bianoButton) {
     bianoTrack('init-button');
   }
-  
+
   const values = {
     id: data.product_view_productId,
     source: 'gtm',
@@ -470,7 +546,7 @@ if (data.eventType === 'page_view') {
     shipping_date: null,
     source: 'gtm',
   };
-  
+
   if (data.purchase_shipping_days && (getType(data.purchase_shipping_days) === 'string' || getType(data.purchase_shipping_days) === 'number')) {
       const shipping_days_int = makeInteger(data.purchase_shipping_days);
       if (data.purchase_shipping_days == shipping_days_int) {
@@ -489,7 +565,7 @@ if (data.eventType === 'page_view') {
 
       values.shipping_date = shippingDate;
     }
-  
+
   let orderItems;
   if (data.purchase_items) {
     orderItems = data.purchase_items;
@@ -505,7 +581,7 @@ if (data.eventType === 'page_view') {
   bianoTrack('track', data.eventType, values);
 }
 
-const scriptDomain = consent ? ('https://pixel.' + domain) : 'https://bianopixel.com'; 
+const scriptDomain = consent ? ('https://pixel.' + domain) : 'https://bianopixel.com';
 const scriptPath = data.debug ? 'debug' : 'min';
 const scriptUrl = scriptDomain + '/' + scriptPath + '/pixel.js';
 injectScript(scriptUrl, data.gtmOnSuccess, data.gtmOnFailure, scriptUrl);
@@ -787,6 +863,13 @@ ___WEB_PERMISSIONS___
       },
       "param": [
         {
+          "key": "allowedKeys",
+          "value": {
+            "type": 1,
+            "string": "specific"
+          }
+        },
+        {
           "key": "keyPatterns",
           "value": {
             "type": 2,
@@ -794,6 +877,152 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "bianoPixel.*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "access_consent",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "consentTypes",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "analytics_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "ad_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "personalization_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "consentType"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "functionality_storage"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
               }
             ]
           }
