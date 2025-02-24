@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
 versions:
+  - sha: b7682a5a4dd7b803dd63da5ebd0ff3c997b9a158
+    changeNotes: biano.com/pl support
   - sha: 3df0ca764fd2808f33666ae99be871fb0f7e1489
     changeNotes: ATTENTION! Drop support for Biano consent mode (using custom variable), add native GTM consent mode support instread
   - sha: 59cb8ef8ce85ec784c59f55b1252144500e5f90f
