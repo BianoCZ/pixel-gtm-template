@@ -464,6 +464,7 @@ const domainMap = {
   it: 'biano.it',
   bg: 'biano.bg',
   br: 'biano.com.br',
+  pl: 'biano.com/pl',
 };
 
 const domain = domainMap[data.merchantId.substring(0, 2)] || '';
