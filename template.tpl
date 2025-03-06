@@ -807,6 +807,10 @@ ___WEB_PERMISSIONS___
                 "string": "https://bianopixel.com/*/pixel.js"
               },
               {
+              "type": 1,
+              "string": "https://pixel.biano.com/*/pixel.js"
+              },
+              {
                 "type": 1,
                 "string": "https://pixel.biano.cz/*/pixel.js"
               },
