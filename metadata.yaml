@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
 versions:
+  - sha: 678c0cfae8324c544754366821d88c188e3ed16c
+    changeNotes: biano.com/pl support vol2
   - sha: b7682a5a4dd7b803dd63da5ebd0ff3c997b9a158
     changeNotes: biano.com/pl support
   - sha: 3df0ca764fd2808f33666ae99be871fb0f7e1489
