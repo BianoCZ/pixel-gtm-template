@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
 versions:
+  - sha: 1a17e3769f66ed8da4cdf15d6ec52ab23ea88c47
+    changeNotes: ident fix
   - sha: 678c0cfae8324c544754366821d88c188e3ed16c
     changeNotes: biano.com/pl support vol2
   - sha: b7682a5a4dd7b803dd63da5ebd0ff3c997b9a158
