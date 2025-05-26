@@ -463,7 +463,7 @@ const domainMap = {
   gr: 'biano.gr',
   it: 'biano.it',
   bg: 'biano.bg',
-  br: 'biano.com.br',
+  br: 'biano.com/br',
   pl: 'biano.com/pl',
 };
 
