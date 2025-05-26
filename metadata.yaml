@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf"
 versions:
+  - sha: 95f88f9840e466d04e4fbed27e0570d4007e6605
+    changeNotes: Move biano.com/br to biano.com/br
   - sha: 4fe7cbc1858e97225b793e7f27ef40b9b4d70c08
     changeNotes: deploy fix
   - sha: 1a17e3769f66ed8da4cdf15d6ec52ab23ea88c47
