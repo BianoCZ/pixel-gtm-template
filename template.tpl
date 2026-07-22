@@ -133,7 +133,7 @@ ___TEMPLATE_PARAMETERS___
     "type": "LABEL"
   },
   {
-    "help": "https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+    "help": "https://eshop.biano.cz/wiki/biano-pixel-gtm",
     "enablingConditions": [
       {
         "paramName": "eventType",
@@ -167,7 +167,7 @@ ___TEMPLATE_PARAMETERS___
     ]
   },
   {
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+    "help": "Fill required fields according to https://eshop.biano.cz/wiki/biano-pixel-gtm",
     "enablingConditions": [
       {
         "paramName": "eventType",
@@ -230,7 +230,7 @@ ___TEMPLATE_PARAMETERS___
     ]
   },
   {
-    "help": "Fill required fields according to https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+    "help": "Fill required fields according to https://eshop.biano.cz/wiki/biano-pixel-gtm",
     "enablingConditions": [
       {
         "paramName": "eventType",
@@ -287,7 +287,7 @@ ___TEMPLATE_PARAMETERS___
         "canBeEmptyString": true
       },
       {
-        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://pixel.biano.cz/pdf/GUIDE-PIXEL-GTM_CZ-EN.pdf",
+        "displayName": "Alternatively you can push array of purchased items into Data Layer under key \"bianoPixel.orderItems\" as described in documentation: https://eshop.biano.cz/wiki/biano-pixel-gtm",
         "name": "purchase_dl_order_items",
         "type": "LABEL"
       },
