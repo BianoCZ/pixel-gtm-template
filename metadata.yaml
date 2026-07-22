@@ -1,6 +1,8 @@
 homepage: "https://www.biano.cz"
 documentation: "https://eshop.biano.cz/wiki/biano-pixel-gtm"
 versions:
+  - sha: 1114d47f800f1d4fb56451036a4a1676ee62e10b
+    changeNotes: Replace PDF manual links with Shop Admin wiki guide
   - sha: 95f88f9840e466d04e4fbed27e0570d4007e6605
     changeNotes: Move biano.com/br to biano.com/br
   - sha: 4fe7cbc1858e97225b793e7f27ef40b9b4d70c08
